@@ -84,8 +84,9 @@ public class TableInfo implements Validity {
 
                 // check id
                 if (columnInfo.getColumnName().equals(BaseColumns._ID)) {
-                    boolean generatedId = classfield.getAnnotation(DatabaseField.class).generatedId();
-                    if (generatedId) {
+                    boolean hasIdField = classfield.getAnnotation(DatabaseField.class).generatedId() ||
+                        classfield.getAnnotation(DatabaseField.class).id();
+                    if (hasIdField) {
                         this.idColumnInfo = columnInfo;
                     }
                 }
